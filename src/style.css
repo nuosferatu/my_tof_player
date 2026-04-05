@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 全屏画布：禁止页面滚动，避免 100vw/inline canvas 带来的双方向滚动条 */
+html {
+  margin: 0;
+  overflow: hidden;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+}
+
+#app {
+  position: fixed;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* WebGL canvas 默认 inline，底部会有“行内空隙”，会把页面撑出纵向滚动条 */
+#app canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.viewer-toolbar {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: rgba(15, 23, 42, 0.85);
+  color: #e5e7eb;
+  font:
+    13px/1.4 system-ui,
+    sans-serif;
+  pointer-events: auto;
+  max-width: calc(100vw - 24px);
+}
+
+.viewer-toolbar button {
+  cursor: pointer;
+  padding: 6px 12px;
+  border: 1px solid #4b5563;
+  border-radius: 6px;
+  background: #1f2937;
+  color: #f3f4f6;
+}
+
+.viewer-toolbar button:hover:not(:disabled) {
+  background: #374151;
+}
+
+.viewer-toolbar button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.viewer-toolbar .viewer-file-status {
+  margin-left: 4px;
+  opacity: 0.9;
+  word-break: break-all;
+}
